@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>新規登録/変更/削除</title>
+<style type="text/css">
+ 	nav {text-align: left; font-size:20px;}
+  	nav ul{margin: 0 ; padding: 0 ;}
+	nav ul li{list-style: none; display: inline-block;width: 18%; min-width: 90px;}
+	nav ul li a{text-decoration: none; color: #333;}
+	nav ul li.current a{color: #F33135;}
+	nav ul li a:hover{color: #E7DA66;}
+	form a{margin-top: 50 ; padding: 50 ;}
+
+	.gnav{
+		display: flex;
+		height: 2rem;
+		margin: 0 auto;
+		width: 1000px;
+		position: fixed;
+	}
+
+	.gnav > li {/*メニューバーの幅*/
+	 	width: 0%;
+	 }
+
+	/*すべてのリスト・リンク共通*/
+	.gnav li{
+		list-style: none;
+		position: relative;
+	}
+
+	.gnav li a {
+		background: #001b34;
+		border-light: 1px solid #eee;
+		color: #fff;
+		display: block;
+		height: 2rem;
+		line-height: 2rem;
+		text-align: center;
+		text-decoration: none; /*文字の下線*/
+		width: 100%;
+	}
+
+	/*子階層以降共通*/
+	.gnav li li {
+		height: 0;
+		overflow: hidden;
+		transition: .5s;
+	}
+
+	.gnav li li a {
+		border-top: 1px solid #eee;
+	}
+
+	.gnav li:hover > ul > li {
+		height: 2rem;
+		overflow: visible;
+	}
+</style>
+
+</head>
+<body>
+<h1>ようつべ</h1>
+
+<nav class="menu-">
+    <ul class="gnav">
+        <li><a href="http://127.0.0.1:8080/topScr1">Top</a></li>
+        <li><a href="http://127.0.0.1:8080/Archive">Archive</a></li>
+        <li><a href="http://127.0.0.1:8080/Menu">Menu</a>
+	        <ul>
+		      		<li><a href="http://127.0.0.1:8080/Menu2">menu1</a></li>
+
+		    </ul>
+        </li>
+    </ul>
+  </nav>
+<br>
+
+<h2>データベース</h2>
+<form th:action="@{/input_fin}" th:object="${data}" method="get">
+
+<table border="1">
+<tr><th>channelid</th>
+<td><input type="text" th:field="*{channelid}"></td>
+</tr>
+<tr><th>channelname</th>
+<td><input type="text" th:field="*{channelname}"></td>
+</tr>
+</table>
+<p><button type="submit" name="">登録</button></p>
+
+</form>
+
+</body>
+</html>

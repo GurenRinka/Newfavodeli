@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+
+<!-- CSS-->
+<!-- メニューバー-->
+<style type="text/css">
+ 	nav { float: left; font-size:20px;}
+  	nav ul{margin: 0 ; padding: 0 ;}
+	nav ul li{list-style: none; display: inline-block;width: 18%; min-width: 90px;}
+	nav ul li a{text-decoration: none; color: #333;}
+	nav ul li.current a{color: #F33135;}
+	nav ul li a:hover{color: #E7DA66;}
+	form a{margin-top: 50 ; padding: 50 ;}
+
+	.gnav{
+		display: flex;
+		height: 2rem;
+		margin: 0 auto;
+		width: 1000px;
+		position: fixed;
+	}
+
+	.gnav > li {/*メニューバーの幅*/
+	 	width: 0%;
+	 }
+
+	/*すべてのリスト・リンク共通*/
+	.gnav li{
+		list-style: none;
+		position: relative;
+	}
+
+	.gnav li a {
+		background: #001b34;
+		border-light: 1px solid #eee;
+		color: #fff;
+		display: block;
+		height: 2rem;
+		line-height: 2rem;
+		text-align: center;
+		text-decoration: none; /*文字の下線*/
+		width: 100%;
+	}
+
+	/*子階層以降共通*/
+	.gnav li li {
+		height: 0;
+		overflow: hidden;
+		transition: .5s;
+	}
+
+	.gnav li li a {
+		border-top: 1px solid #eee;
+	}
+
+	.gnav li:hover > ul > li {
+		height: 2rem;
+		overflow: visible;
+	}
+</style>
+
+  <title>メニュー</title>
+</head>
+
+<body>
+
+  <h1>メニュー画面</h1>
+  <nav class="menu-">
+    <ul class="gnav">
+        <li><a href="http://127.0.0.1:8080/topScr1">Top</a></li>
+        <li><a href="http://127.0.0.1:8080/Archive">Archive</a></li>
+        <li><a href="http://127.0.0.1:8080/Menu">Menu</a>
+	        <ul>
+		      		<li><a href="http://127.0.0.1:8080/Menu2">menu1</a></li>
+
+		    </ul>
+        </li>
+    </ul>
+  </nav>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<ul th:each="data:${datalist}">
+<li><a th:href="@{/search(number=${data.number})}">[[${data}]]</a></li>
+</ul>
+
+<!--
+<form th:action="@{/edit}" th:object="${data}" method="get" th:each="database:${datalist}">
+
+<input th:type="text" th:value="${database[0]}" th:field="*{number}" >
+<input th:type="text" th:value="${database[1]}" th:field="*{channelid}" >
+<input th:type="text" th:value="${database[2]}" th:field="*{channelname}" >
+
+<table border="1">
+<tr><th>チャンネルID</th>
+<td th:text="${database[1]}" th:field="*{channelid}"></td>
+</tr>
+<tr><th>チャンネル名</th>
+<td th:text="${database[2]}" th:field="*{channelname}"></td>
+</tr>
+
+</table>
+-->
+<p><button type="submit" name="">編集</button></p>
+
+
+</form>
+
+</body>
+
+</html>
